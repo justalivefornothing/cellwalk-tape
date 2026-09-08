@@ -108,6 +108,17 @@ export class TapeCanvas {
       ctx.fillText(String(i), x + cellW / 2, CELL_TOP + CELL_H + 16)
     }
 
+    // Tape boundaries: a heavy bar just outside cell 0 and the last cell.
+    ctx.fillStyle = '#000'
+    if (first <= 0) {
+      const x0 = cx + (0 - this.headX) * cellW - cellW / 2
+      ctx.fillRect(x0 - 10, CELL_TOP - 8, 4, CELL_H + 16)
+    }
+    if (last >= size - 1) {
+      const xEnd = cx + (size - 1 - this.headX) * cellW + cellW / 2
+      ctx.fillRect(xEnd + 6, CELL_TOP - 8, 4, CELL_H + 16)
+    }
+
     // Head marker: a triangle above the real head cell.
     const hx = cx + (m.ptr - this.headX) * cellW
     ctx.fillStyle = '#000'

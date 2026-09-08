@@ -392,6 +392,14 @@ function frame(): void {
   requestAnimationFrame(frame)
 }
 
-loadGallery('hello')
+// ---------- boot: ?p=<gallery id>&speed=<0..100>&run ----------
+
+const params = new URLSearchParams(location.search)
+const speedParam = Number(params.get('speed'))
+if (params.has('speed') && Number.isFinite(speedParam)) {
+  els.speed.value = String(Math.min(100, Math.max(0, Math.round(speedParam))))
+}
 els.speed.dispatchEvent(new Event('input'))
+loadGallery(GALLERY.some((g) => g.id === params.get('p')) ? params.get('p')! : 'hello')
+if (params.has('run')) toggleRun()
 requestAnimationFrame(frame)
