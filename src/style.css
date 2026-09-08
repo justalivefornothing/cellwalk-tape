@@ -194,18 +194,19 @@ kbd {
 .gallery button {
   padding: 6px 12px;
   font-size: 12px;
+}
+
+.seg button + button {
   margin-left: -2px;
 }
 
-.seg button:first-child,
-.gallery button:first-child {
-  margin-left: 0;
-}
-
-.seg button[aria-pressed='true'],
-.gallery button[aria-pressed='true'] {
+.seg button[aria-pressed='true'] {
   position: relative;
   z-index: 1;
+}
+
+.gallery {
+  gap: 6px;
 }
 
 /* ---------- tape ---------- */
